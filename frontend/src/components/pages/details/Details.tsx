@@ -1,4 +1,5 @@
 import { Layout } from 'components/Layout/Layout';
+import { Modal } from 'components/Modal';
 import Loader from 'react-loader';
 import parse from 'html-react-parser';
 import { FormattedMessage } from 'react-intl';
@@ -116,16 +117,15 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                   desktop:w-3/5"
                 >
                   <OpenMapButton displayMap={displayMobileMap} />
-                  <div
-                    id="details_cover"
-                    className="h-coverDetailsMobile desktop:h-coverDetailsDesktop"
-                  >
-                    {details.imgs.length > 1 ? (
-                      <DetailsCoverCarousel attachments={details.imgs} />
-                    ) : (
-                      <ImageWithLegend attachment={details.imgs[0]} />
-                    )}
-                  </div>
+                  <Modal>
+                    <div id="details_cover">
+                      {details.imgs.length > 1 ? (
+                        <DetailsCoverCarousel attachments={details.imgs} />
+                      ) : (
+                        <ImageWithLegend attachment={details.imgs[0]} />
+                      )}
+                    </div>
+                  </Modal>
                   <div
                     id="details_textContainer"
                     className="desktop:py-0

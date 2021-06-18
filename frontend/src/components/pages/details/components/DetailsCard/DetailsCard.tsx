@@ -1,3 +1,4 @@
+import { Modal } from 'components/Modal';
 import { useContext } from 'react';
 import { textEllipsisAfterNLines } from 'services/cssHelpers';
 import parse from 'html-react-parser';
@@ -67,11 +68,13 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
         />
       )}
       <div className="flex-none desktop:w-2/5">
-        {thumbnailUris.length > 1 ? (
-          <DetailsCardCarousel thumbnailUris={thumbnailUris} height={heightState} />
-        ) : (
-          <CardSingleImage src={thumbnailUris[0]} height={heightState} />
-        )}
+        <Modal marginSize={'small'}>
+          {thumbnailUris.length > 1 ? (
+            <DetailsCardCarousel thumbnailUris={thumbnailUris} height={heightState} />
+          ) : (
+            <CardSingleImage src={thumbnailUris[0]} height={heightState} />
+          )}
+        </Modal>
         {iconUri && <CardIcon iconUri={iconUri} />}
       </div>
       <div
@@ -147,6 +150,10 @@ export const CardSingleImage = styled.img<{ height: number }>`
   object-position: top;
   @media (min-width: ${MAX_WIDTH_MOBILE}px) {
     height: ${props => props.height}px;
+    width: 100%;
+  }
+  @media (display-mode: fullscreen) {
+    height: 100%;
     width: 100%;
   }
 `;
