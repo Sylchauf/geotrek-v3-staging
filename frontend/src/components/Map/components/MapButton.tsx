@@ -4,7 +4,7 @@ interface Props {
   className?: string;
   style?: React.CSSProperties;
   displayAt?: 'left' | 'right';
-  marginSize: 'small' | 'medium';
+  marginSize?: 'small' | 'medium';
 }
 
 const MARGIN = {

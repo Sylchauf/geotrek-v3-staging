@@ -78,7 +78,7 @@ export const useTrekResults = (
     const url = computeUrl(filtersState, textFilterState);
     if (url !== filterUrl.current) {
       filterUrl.current = url;
-      router.push(url, undefined, { shallow: true });
+      void router.push(url, undefined, { shallow: true });
       void refetch();
     }
   }, [filtersState, textFilterState, refetch]);
